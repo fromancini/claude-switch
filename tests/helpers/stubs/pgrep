@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# tests/helpers/stubs/pgrep   (always "not running" so desktop_quit is skipped)
+exit 1

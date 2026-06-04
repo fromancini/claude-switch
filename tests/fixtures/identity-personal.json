@@ -1,0 +1,11 @@
+{
+  "oauthAccount": {
+    "emailAddress": "you@personal.example",
+    "displayName": "Filipe Home",
+    "organizationName": "",
+    "organizationUuid": "org-home",
+    "accountUuid": "acct-home",
+    "seatTier": "max"
+  },
+  "userID": "user-HOME-bbb"
+}

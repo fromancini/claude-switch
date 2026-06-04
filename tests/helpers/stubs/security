@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# tests/helpers/stubs/security — minimal Keychain emulator.
+# Faithfully mimics the real quirk that broke us: `find-generic-password -w`
+# returns the secret as HEX when the stored data contains a newline /
+# non-printable byte; otherwise it returns it raw. (Blob in $KC_STORE.)
+store="${KC_STORE:?KC_STORE must be set}"
+case "$1" in
+  find-generic-password)
+    want_pw=0
+    for a in "$@"; do [ "$a" = "-w" ] && want_pw=1; done
+    if [ "$want_pw" -eq 1 ]; then
+      [ -f "$store" ] || exit 44
+      if [ "$(wc -l < "$store" | tr -d ' ')" -gt 0 ]; then
+        xxd -p "$store" | tr -d '\n'; echo            # multi-line stored -> hex out
+      else
+        cat "$store"; echo                            # single-line stored -> raw out
+      fi
+    else
+      printf '    "acct"<blob>="%s"\n' "${KC_ACCT:-test@acct}"
+    fi
+    ;;
+  add-generic-password)
+    shift; newpw=""
+    while [ "$#" -gt 0 ]; do
+      case "$1" in -w) shift; newpw="$1" ;; esac
+      shift
+    done
+    printf '%s' "$newpw" > "$store"
+    ;;
+  delete-generic-password) rm -f "$store" 2>/dev/null ;;
+  *) exit 0 ;;
+esac

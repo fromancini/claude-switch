@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+/tmp-test/
+app/.build/
+app/.swiftpm/
+app/ClaudeSwitch.app/

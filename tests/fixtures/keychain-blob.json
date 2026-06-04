@@ -1,0 +1,14 @@
+{
+  "claudeAiOauth": {
+    "accessToken": "AT-work",
+    "refreshToken": "RT-work",
+    "expiresAt": 1111111111,
+    "scopes": ["user:inference"],
+    "subscriptionType": "enterprise",
+    "rateLimitTier": "default"
+  },
+  "mcpOAuth": {
+    "plugin:gitlab:gitlab|abc": { "accessToken": "GL-keep-me" },
+    "plugin:vercel:vercel|def": { "accessToken": "VC-keep-me" }
+  }
+}

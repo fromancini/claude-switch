@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Resolve the real directory even if invoked via a symlink on PATH.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  case "$SOURCE" in /*) ;; *) SOURCE="$DIR/$SOURCE" ;; esac
+done
+ROOT="$(cd -P "$(dirname "$SOURCE")/.." && pwd)"
+
+# shellcheck source=lib/paths.sh
+. "$ROOT/lib/paths.sh"
+# shellcheck source=lib/json_ops.sh
+. "$ROOT/lib/json_ops.sh"
+# shellcheck source=lib/keychain.sh
+. "$ROOT/lib/keychain.sh"
+# shellcheck source=lib/desktop.sh
+. "$ROOT/lib/desktop.sh"
+# shellcheck source=lib/commands.sh
+. "$ROOT/lib/commands.sh"
+
+main() {
+  local cmd="${1:-}"
+  [ "$#" -gt 0 ] && shift
+  local dry=0 json=0 positional="" a
+  for a in "$@"; do
+    case "$a" in
+      --dry-run) dry=1 ;;
+      --json) json=1 ;;
+      *) [ -z "$positional" ] && positional="$a" ;;
+    esac
+  done
+  case "$cmd" in
+    init)    cmd_init "$positional" ;;
+    add)     cmd_add "$positional" ;;
+    capture) cmd_capture "$positional" ;;
+    remove)  cmd_remove "$positional" ;;
+    list)    cmd_list "$json" ;;
+    current) cmd_current "$json" ;;
+    whoami)  cmd_whoami "$json" ;;
+    use)     cmd_use "$positional" "$dry" ;;
+    ""|-h|--help|help) usage ;;
+    *) echo "unknown command: $cmd" >&2; usage; return 2 ;;
+  esac
+}
+
+main "$@"

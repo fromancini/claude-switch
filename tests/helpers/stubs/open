@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# tests/helpers/stubs/open
+exit 0

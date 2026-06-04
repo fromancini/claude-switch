@@ -1,0 +1,14 @@
+{
+  "numStartups": 42,
+  "installMethod": "brew",
+  "userID": "user-WORK-aaa",
+  "projects": { "/Users/x/proj": { "allowedTools": ["Bash"] } },
+  "oauthAccount": {
+    "emailAddress": "you@work.example",
+    "displayName": "Filipe Work",
+    "organizationName": "Kea Aerospace",
+    "organizationUuid": "org-work",
+    "accountUuid": "acct-work",
+    "seatTier": "enterprise"
+  }
+}

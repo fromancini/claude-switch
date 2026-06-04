@@ -1,0 +1,8 @@
+{
+  "accessToken": "AT-home",
+  "refreshToken": "RT-home",
+  "expiresAt": 2222222222,
+  "scopes": ["user:inference"],
+  "subscriptionType": "max",
+  "rateLimitTier": "default"
+}
