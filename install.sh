@@ -19,7 +19,7 @@ banner() {
           .  \ | /  .            ___ _      _   _   _ ___  ___
        --  --(*)--  --          / __| |    /_\ | | | |   \| __|
           '  / | \  '          | (__| |__ / _ \| |_| | |) | _|
-              '  *               \___|____/_/ \_\___/|___/|___|
+              '  *              \___|____/_/ \_ \___/|___/|___|
                                       S W I T C H
 ART
   printf '%s' "$R"
@@ -35,7 +35,7 @@ success_box() {
   printf '\n%s%s' "$GREEN" "$B"
   cat <<'BOX'
    ╭───────────────────────────────────────────────╮
-   │   ✓  Claude Switch is installed and running     │
+   │   ✓  Claude Switch is installed and running   │
    ╰───────────────────────────────────────────────╯
 BOX
   printf '%s' "$R"
