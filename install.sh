@@ -47,6 +47,9 @@ banner
 step "Checking requirements"
 [ "$(uname -s)" = "Darwin" ] || die "Claude Switch is macOS-only."
 ok "macOS"
+# uname -m lies under Rosetta; query the hardware directly.
+[ "$(sysctl -n hw.optional.arm64 2>/dev/null)" = "1" ] || die "Claude Switch requires Apple Silicon (arm64)."
+ok "Apple Silicon"
 command -v git >/dev/null || die "git is required."
 ok "git"
 command -v swift >/dev/null || die "Swift is required — run: xcode-select --install"

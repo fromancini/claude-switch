@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-swift build -c release
+swift build -c release --arch arm64
 BIN=".build/release/ClaudeSwitchMenuBar"
 APP="ClaudeSwitch.app"
 ID="com.claudeswitch.app"
